@@ -7,9 +7,7 @@ function* fetchBooksFlow() {
     try {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
 
-        const res = yield call(Api.getBooksRequest);
-        console.log('here');
-        
+        const res = yield call(Api.getBooksRequest);        
         yield put({ type: SAVE_BOOKS, booksList: res.data });
         console.log(res.data);
         
@@ -26,6 +24,8 @@ export function* watchFetchBooks() {
         yield call(fetchBooksFlow);
     }
 };
+
+
 
 // export function* watchFetchBooks() {
 //     while (true) {
