@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: arial;
     background-size: cover;
+    color: #59474F;
   }
 
   body {
@@ -47,7 +48,6 @@ const GlobalStyle = createGlobalStyle`
   .Header-Text{
     font-size: 5vw;
     font-weigh: bold;
-    color: #59474F;  
     text-shadow: 3px 3px 4px white; 
   }
 `;
