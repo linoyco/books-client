@@ -1,6 +1,6 @@
 import React from 'react';
-import Home from './Containers/Home';
 import { createGlobalStyle } from 'styled-components';
+import AppRoutes from './AppRoutes';
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -59,7 +59,7 @@ const App: React.FunctionComponent = () => (
       <div className='Header'>
         <p className='Header-Text'>Welcome</p>
       </div>
-      <Home />
+      <AppRoutes />
     </div>
   </div>
 );
