@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
 
     padding:1.5%;
   }
-
+ 
   .Header-Text{
     font-size: 5vw;
     font-weigh: bold;
