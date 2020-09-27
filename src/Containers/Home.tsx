@@ -12,7 +12,7 @@ const Home: React.FunctionComponent = () => {
 
     React.useEffect(() => {
         dispatch(fetchBooks());
-    }, [booksList]);
+    }, [booksList.length]);
 
     return (
         <div>

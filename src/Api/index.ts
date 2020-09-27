@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Axios = axios.create({
-    baseURL: 'localhost:9000'
+    baseURL: 'http://localhost:9000'
 });
 
 const GET_BOOKS_URL = '/';
