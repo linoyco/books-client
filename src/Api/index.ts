@@ -4,7 +4,6 @@ const Axios = axios.create({
     baseURL: 'localhost:9000'
 });
 
-const API_KEY = '308a457aaec919a2227e6a73f69ff109';
 const GET_BOOKS_URL = '/';
 
 export const getBooksRequest = () => {

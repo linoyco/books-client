@@ -15,7 +15,9 @@ const Home: React.FunctionComponent = () => {
     }, [booksList]);
 
     return (
-        <div>Hello</div>
+        <div>
+            Hello
+        </div>
     );
 }
 
