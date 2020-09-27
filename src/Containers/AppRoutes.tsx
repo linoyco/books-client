@@ -1,7 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AdminPage from './AdminPage';
 
-import Home from './Home';
+import HomePage from './HomePage';
+import LoginPage from './LoginPage';
+import UserPage from './UserPage';
 
 export const Routes = {
     home: '/',
@@ -13,10 +16,10 @@ export const Routes = {
 export default () => (
     <Router>
         <Switch>
-            <Route exact path={Routes.login} component={() => (<div>Hello, login!</div>)} />
-            <Route exact path={Routes.user} component={() => (<div>Hello, user!</div>)} />
-            <Route exact path={Routes.admin} component={() => (<div>Hello, admin!</div>)} />
-            <Route exact path={Routes.home} component={Home} />
+            <Route exact path={Routes.login} component={LoginPage} />
+            <Route exact path={Routes.user} component={UserPage} />
+            <Route exact path={Routes.admin} component={AdminPage} />
+            <Route exact path={Routes.home} component={HomePage} />
         </Switch>
     </Router>
 );
