@@ -1,7 +1,7 @@
 import produce from 'immer';
 
 import { IBook, IUser } from '../../Api/ApiObject';
-import { appActionType, SAVE_BOOKS } from '../Actions/App/types';
+import { appActionType, SAVE_BOOKS, SAVE_USER } from '../Actions/App/types';
 
 export interface IAppState {
     booksList: Array<IBook>;
@@ -27,6 +27,9 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
         switch (action.type) {
             case SAVE_BOOKS:
                 draft.booksList = action.booksList;
+                break;
+            case SAVE_USER:
+                draft.userDetails = action.userDetails;
                 break;
         }
     });

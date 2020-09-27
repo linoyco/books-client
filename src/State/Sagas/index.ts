@@ -1,9 +1,10 @@
 import { all } from 'redux-saga/effects';
 
-import { watchFetchBooks } from './app';
+import { watchFetchBooks, watchLogin } from './app';
 
 export default function* rootSaga() {
 	yield all([
-		watchFetchBooks()
+		watchFetchBooks(),
+		watchLogin()
 	]);
 }

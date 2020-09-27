@@ -1,7 +1,9 @@
-import { IBook } from "../../../Api/ApiObject";
+import { IBook, IUser } from "../../../Api/ApiObject";
 
 export const FETCH_BOOKS = 'FETCH_BOOKS';
 export const SAVE_BOOKS = 'SAVE_BOOKS';
+export const SEND_LOGIN_DETAILS = 'SEND_LOGIN_DETAILS';
+export const SAVE_USER = 'SAVE_USER';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -12,5 +14,18 @@ export interface ISaveBooks {
     booksList: Array<IBook>;
 }
 
+export interface ISendLoginDetails {
+    type: typeof SEND_LOGIN_DETAILS;
+    name: string;
+    password: string;
+}
+
+export interface ISaveUser {
+    type: typeof SAVE_USER;
+    userDetails: IUser;
+}
+
 export type appActionType = IFetchBooks
-    | ISaveBooks;
+    | ISaveBooks
+    | ISendLoginDetails
+    | ISaveUser;
