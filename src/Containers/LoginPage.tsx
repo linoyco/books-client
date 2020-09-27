@@ -11,13 +11,12 @@ const LoginDiv: any = styled.div`
     align-items: center;
     height: 78vh;
 
-
     .Fields{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        
+
         border: 1px solid #14BDEB;
         border-radius: 5px;
         padding: 5%;

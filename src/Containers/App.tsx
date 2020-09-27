@@ -32,6 +32,8 @@ const GlobalStyle = createGlobalStyle`
   .RootDiv{
     background-color: white;
     border: 5px solid #14BDEB;
+    border-radius: 5px;
+
     width: 92vw;
     height: 87vh;
   }
