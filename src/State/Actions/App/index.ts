@@ -13,3 +13,9 @@ export function sendLoginDetails(name: string, password: string): AppActions.ISe
         password: password
     }
 }
+
+export function logout(): AppActions.ILogout {
+    return {
+        type: AppActions.LOGOUT,
+    }
+}

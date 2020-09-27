@@ -3,10 +3,10 @@ import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 import CustomTextField from '../Components/CustomTextField';
 import { sendLoginDetails } from '../State/Actions/App';
-import { useHistory } from 'react-router-dom';
 import { IUser } from '../Api/ApiObject';
 
 const LoginDiv: any = styled.div`

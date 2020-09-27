@@ -6,7 +6,7 @@ import HomePage from './HomePage';
 import LoginPage from './LoginPage';
 import UserPage from './UserPage';
 
-export const Routes = {
+const Routes = {
     home: '/',
     login: '/login',
     user: '/user',
