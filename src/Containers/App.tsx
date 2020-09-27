@@ -1,6 +1,9 @@
 import React from 'react';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import AppRoutes from './AppRoutes';
+import { fetchBooks } from '../State/Actions/App';
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -52,16 +55,24 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App: React.FunctionComponent = () => (
-  <div className='App'>
-    <GlobalStyle />
-    <div className='RootDiv'>
-      <div className='Header'>
-        <p className='Header-Text'>Welcome</p>
+const App: React.FunctionComponent = () => {
+  const dispatch: Dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchBooks());
+  }, []);
+
+  return (
+    <div className='App'>
+      <GlobalStyle />
+      <div className='RootDiv'>
+        <div className='Header'>
+          <p className='Header-Text'>Welcome</p>
+        </div>
+        <AppRoutes />
       </div>
-      <AppRoutes />
     </div>
-  </div>
-);
+  );
+}
 
 export default App;
