@@ -40,7 +40,6 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 
     height: 5vh;
     background-color: #14BDEB;
