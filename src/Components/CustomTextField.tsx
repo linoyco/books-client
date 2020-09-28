@@ -13,9 +13,9 @@ const StyledDiv: any = styled.div`
 interface IProps {
     label: string;
     value: string;
-    type: string;
+    type?: string;
     onChange: any;
-    errorMessage: string;
+    errorMessage?: string;
 }
 
 const CustomTextField: React.FunctionComponent<IProps> = ({ label, value, type, onChange, errorMessage }) => (
@@ -23,10 +23,10 @@ const CustomTextField: React.FunctionComponent<IProps> = ({ label, value, type, 
         <TextField
             label={label}
             value={value}
-            type={type}
+            type={type || 'text'}
             onChange={onChange}
         />
-        <p className='Error'>{errorMessage}</p>
+        <p className='Error'>{errorMessage || ''}</p>
     </StyledDiv>
 );
 

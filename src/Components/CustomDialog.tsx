@@ -18,19 +18,15 @@ const CustomDialog: React.FunctionComponent<IProps> = ({ mood, open, title, onSu
         if (mood === 'add') {
             console.log(mood);
             return <CustomTextField
-                label='Password'
-                type='password'
-                value={'password'}
+                label=''
+                value={''}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
-                errorMessage=''
             />
         } else if (mood === 'edit') {
             return <CustomTextField
-                label='Password'
-                type='password'
-                value={'password'}
+                label=''
+                value={''}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
-                errorMessage=''
             />
         } else return;
     }

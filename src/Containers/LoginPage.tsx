@@ -58,17 +58,14 @@ const LoginPage: React.FunctionComponent = () => {
             <form className='Fields' onSubmit={handleLogin}>
                 <CustomTextField
                     label='Full-Name'
-                    type='text'
                     value={name}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-                    errorMessage=''
                 />
                 <CustomTextField
                     label='Password'
                     type='password'
                     value={password}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                    errorMessage=''
                 />
                 <CustomButton text='Submit' />
             </form>

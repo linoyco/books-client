@@ -6,12 +6,10 @@ import * as Api from '../../Api';
 //GET BOOKS
 function* fetchBooksFlow() {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
         const res = yield call(Api.getBooksRequest);
         yield put({ type: SAVE_BOOKS, booksList: res.data });
     }
     catch (error) {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
         console.log(error.message);
     }
 };
@@ -26,12 +24,10 @@ export function* watchFetchBooks() {
 //LOGIN
 function* LoginFlow(name: string, password: string) {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
         const res = yield call(Api.loginRequest, name, password);
         yield put({ type: SAVE_USER, userDetails: res.data });
     }
     catch (error) {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
         console.log(error.message);
     }
 };
@@ -46,12 +42,10 @@ export function* watchLogin() {
 //LOGOUT
 function* LogoutFlow() {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
         yield call(Api.logoutRequest);
         yield put({ type: DELETE_USER });
     }
     catch (error) {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
         console.log(error.message);
     }
 };
@@ -66,12 +60,10 @@ export function* watchLogout() {
 //SEARCH
 function* searchByFlow(searchBy: string) {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
         const res = yield call(Api.searchRequest, searchBy);
         yield put({ type: SAVE_BOOKS, booksList: res.data[0] });
     }
     catch (error) {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
         console.log(error.message);
     }
 };
@@ -86,12 +78,10 @@ export function* watchSearchBy() {
 //PURCHASE
 function* purchaseFlow(bookId: string, token: string) {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });        
         const res = yield call(Api.purchaseBookRequest, bookId, token);
         yield put({ type: SAVE_USER, userDetails: res.data });
     }
     catch (error) {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
         console.log(error.message);
     }
 };
@@ -106,14 +96,12 @@ export function* watchPurchase() {
 //LAST Purchase
 function* lastPurchaseFlow(bookId: string, token: string) {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });        
         const res = yield call(Api.lastPurchaseRequest, bookId, token);
         console.log(res.data);
 
         yield put({ type: SAVE_LAST_PURCHASE, lastPurchase: res.data });
     }
     catch (error) {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
         console.log(error.message);
     }
 };
