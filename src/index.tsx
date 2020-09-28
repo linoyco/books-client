@@ -3,14 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { Router } from "react-router";
-import { createBrowserHistory } from 'history';
 
 import App from './Containers/App';
 import rootSaga from './State/Sagas/index';
 import { rootReducer } from './State/Reducers';
-
-export const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -22,7 +18,5 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router >
+    <App />
   </Provider>, document.getElementById('root'));

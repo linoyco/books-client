@@ -1,13 +1,10 @@
 import React from 'react';
 import { Dispatch } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import { Button } from '@material-ui/core';
 
 import AppRoutes from './AppRoutes';
 import { fetchBooks, logout } from '../State/Actions/App';
-import { IUser } from '../Api/ApiObject';
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -58,37 +55,14 @@ const GlobalStyle = createGlobalStyle`
     font-weigh: bold;
     text-shadow: 3px 3px 4px white; 
   }
-
-  .Log{
-    background-color: white;
-  }
 `;
 
 const App: React.FunctionComponent = () => {
   const dispatch: Dispatch = useDispatch();
 
-  const [logInOut, setLogInOut] = React.useState<string>('');
-
-  const userDetails: IUser = useSelector((state: any) => state.app.userDetails);
-  const history = useHistory();
-
   React.useEffect(() => {
     dispatch(fetchBooks());
   }, []);
-
-  React.useEffect(() => {
-    dispatch(fetchBooks());
-    userDetails.fullName ? setLogInOut('LogOut') : setLogInOut('LogIn');
-  }, [userDetails.fullName]);
-
-  const handleLogInOut = () => {
-    if (logInOut === 'LogOut') {
-      dispatch(logout());
-      history.push('/');
-    } else {
-      history.push('/login');
-    }
-  }
 
   return (
     <div className='App'>
@@ -96,7 +70,6 @@ const App: React.FunctionComponent = () => {
       <div className='RootDiv'>
         <div className='Header'>
           <p className='Header-Text'>Welcome</p>
-          <Button className='Log' variant='outlined' onClick={() => handleLogInOut()}>{logInOut}</Button>
         </div>
         <AppRoutes />
       </div>
