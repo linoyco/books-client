@@ -41,7 +41,7 @@ const UserPage: React.FunctionComponent = () => {
                     imageUrl={book.imageURL}
                     price={book.price}
                     onClick={handleBuyClicked} />
-                <CustomButton text='buy' onClick={() => console.log(book._id)} />
+                <CustomButton text='buy' onClick={() => handleBuyClicked(book._id ? book._id : '')} />
             </div>
         );
     }
