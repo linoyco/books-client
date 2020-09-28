@@ -1,10 +1,11 @@
 import React from 'react';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
 import AppRoutes from './AppRoutes';
 import { fetchBooks, logout } from '../State/Actions/App';
+import { IUser } from '../Api/ApiObject';
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -60,6 +61,8 @@ const GlobalStyle = createGlobalStyle`
 const App: React.FunctionComponent = () => {
   const dispatch: Dispatch = useDispatch();
 
+  const userDetails: IUser = useSelector((state: any) => state.app.userDetails);
+
   React.useEffect(() => {
     dispatch(fetchBooks());
   }, []);
@@ -70,6 +73,7 @@ const App: React.FunctionComponent = () => {
       <div className='RootDiv'>
         <div className='Header'>
           <p className='Header-Text'>Welcome</p>
+          <p>{userDetails.fullName}</p>
         </div>
         <AppRoutes />
       </div>
