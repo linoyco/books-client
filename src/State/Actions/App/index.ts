@@ -26,3 +26,11 @@ export function searchBook(searchBy: string): AppActions.ISearchBy {
         searchBy: searchBy
     }
 }
+
+export function purchase(bookId: string, token: string): AppActions.IPurchase {
+    return {
+        type: AppActions.PURCHASE,
+        bookId: bookId,
+        token: token
+    }
+}

@@ -7,6 +7,7 @@ export const LOGOUT = 'LOGOUT';
 export const SAVE_USER = 'SAVE_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const SEARCH_BY = 'SEARCH_BY';
+export const PURCHASE = 'PURCHASE';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -41,10 +42,17 @@ export interface ISearchBy {
     searchBy: string;
 }
 
+export interface IPurchase {
+    type: typeof PURCHASE;
+    bookId: string;
+    token: string;
+}
+
 export type appActionType = IFetchBooks
     | ISaveBooks
     | ISendLoginDetails
     | ISaveUser
     | ILogout
     | IDeleteUser
-    | ISearchBy;
+    | ISearchBy
+    | IPurchase;

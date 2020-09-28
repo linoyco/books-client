@@ -7,7 +7,7 @@ import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
 import CustomDialog from '../Components/CustomDialog';
 import CustomTextField from '../Components/CustomTextField';
-import { searchBook } from '../State/Actions/App';
+import { purchase, searchBook } from '../State/Actions/App';
 import { StyledDiv } from './HomePage';
 import CustomButton from '../Components/CustomButton';
 
@@ -16,14 +16,11 @@ const UserPage: React.FunctionComponent = () => {
 
     const [open, setOpen] = React.useState<boolean>(false);
     const [searchBy, setSearchBy] = React.useState<string>('');
-    // const [bookClicked, setBookClicked] = React.useState<string | undefined>('');
+    const [purchaseBook, setPurchaseBook] = React.useState<string>('');
+    const [bookPrice, setBookPrice] = React.useState<string>('');
 
     const booksList: Array<IBook> = useSelector((state: any) => state.app.booksList);
     const userDetails: IUser = useSelector((state: any) => state.app.userDetails);
-
-    const handleBuyClicked = (bookId: string) => {
-        setOpen(true);
-    }
 
     React.useEffect(() => {
         mapBooksList();
@@ -40,10 +37,12 @@ const UserPage: React.FunctionComponent = () => {
                     imageUrl={book.imageURL}
                     publisher={book.publisher.publisherName}
                     price={book.price} />
-                <CustomButton text='buy' onClick={() => handleBuyClicked(book._id ? book._id : '')} />
+                <CustomButton text='buy' onClick={() => [setOpen(true), setPurchaseBook(book._id ? book._id : ''), setBookPrice(book.price)]} />
             </div>
         );
     }
+
+    // const lastPurchase = 
 
     return (
         <StyledDiv>
@@ -61,9 +60,9 @@ const UserPage: React.FunctionComponent = () => {
             </div>
             <CustomDialog
                 open={open}
-                onClickCancel={() => [setOpen(false)]}
-                onSubmitForm={() => [setOpen(false)]}
-                title={`Total Price: `}
+                onClickCancel={() => setOpen(false)}
+                onSubmitForm={() => [setOpen(false), dispatch(purchase(purchaseBook, userDetails.token))]}
+                title={`Total Price: ${bookPrice}$`}
                 selectSubmitButtonName={'OK'}
             />
         </StyledDiv>

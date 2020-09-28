@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { DELETE_USER, FETCH_BOOKS, LOGOUT, SAVE_BOOKS, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
+import { DELETE_USER, FETCH_BOOKS, LOGOUT, PURCHASE, SAVE_BOOKS, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
 import * as Api from '../../Api';
 
 //GET BOOKS
@@ -80,5 +80,28 @@ export function* watchSearchBy() {
     while (true) {
         const { searchBy } = yield take(SEARCH_BY);
         yield call(searchByFlow, searchBy);
+    }
+};
+
+
+//PURCHASE
+function* purchaseFlow(bookId: string, token: string) {
+    try {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
+        const res = yield call(Api.purchaseBookRequest, bookId, token);
+        console.log(res.data);
+
+        yield put({ type: SAVE_USER, userDetails: res.data });
+    }
+    catch (error) {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
+        console.log(error.message);
+    }
+};
+
+export function* watchPurchase() {
+    while (true) {
+        const { bookId, token } = yield take(PURCHASE);
+        yield call(purchaseFlow, bookId, token);
     }
 };

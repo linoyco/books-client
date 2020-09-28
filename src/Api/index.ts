@@ -63,7 +63,8 @@ export const deleteBookRequest = (bookID: string, token: string) => {
 
 //USER - purchase book
 export const purchaseBookRequest = (bookID: string, token: string) => {
-    return Axios.patch(PURCHASE_URL, bookID, {
+    const obj = { bookID: bookID }
+    return Axios.patch(PURCHASE_URL, obj, {
         headers: { 'Authorization': `Bearer ${token}` }
     });
 }

@@ -1,7 +1,6 @@
 import { CardMedia } from '@material-ui/core';
 import * as React from 'react';
 import styled from 'styled-components';
-import CustomButton from './CustomButton';
 
 const StyledDiv: any = styled.div`
     display: flex;
