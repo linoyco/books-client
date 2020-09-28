@@ -7,7 +7,6 @@ import * as Api from '../../Api';
 function* fetchBooksFlow() {
     try {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
-
         const res = yield call(Api.getBooksRequest);
         yield put({ type: SAVE_BOOKS, booksList: res.data });
     }
@@ -28,7 +27,6 @@ export function* watchFetchBooks() {
 function* LoginFlow(name: string, password: string) {
     try {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
-
         const res = yield call(Api.loginRequest, name, password);
         yield put({ type: SAVE_USER, userDetails: res.data });
     }
@@ -49,7 +47,6 @@ export function* watchLogin() {
 function* LogoutFlow() {
     try {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
-
         yield call(Api.logoutRequest);
         yield put({ type: DELETE_USER });
     }
@@ -70,11 +67,8 @@ export function* watchLogout() {
 function* searchByFlow(searchBy: string) {
     try {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
-        console.log(searchBy);
-
         const res = yield call(Api.searchRequest, searchBy);
-        // yield put({ type: DELETE_USER });
-        console.log('>>', res.data[0]);
+        yield put({ type: SAVE_BOOKS, booksList: res.data[0] });
     }
     catch (error) {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
