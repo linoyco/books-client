@@ -39,6 +39,14 @@ const AdminPage: React.FunctionComponent = () => {
         mapBooksList();
     }, [booksList]);
 
+    const resetLocal = () => {
+        setLocalBookName('');
+        setLocalAuthorName('');
+        setLocalPublisherName('');
+        setLocalPrice('');
+        setLocalImageUrl('');
+    }
+
     const mapBooksList = () => {
         if (booksList.length === 0) { return <div></div>; }
         return booksList.map(book =>
@@ -79,7 +87,7 @@ const AdminPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
-                <CustomButton text='new book' onClick={() => setOpenAdd(true)} />
+                <CustomButton text='new book' onClick={() => [setOpenAdd(true), resetLocal()]} />
             </div>
             <div className='Cards'>
                 {mapBooksList()}

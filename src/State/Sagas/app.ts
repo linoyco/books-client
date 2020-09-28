@@ -130,3 +130,39 @@ export function* watchAddBook() {
         yield call(addBookFlow, newBook, token);
     }
 };
+
+//UPDATE BOOK
+function* addUpdateFlow(newBook: IBook, token: string) {
+    try {
+        // const res = yield call(Api.addBookRequest, newBook, token);
+        // yield put({ type: SAVE_BOOK, newBook: res.data });
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+};
+
+export function* watchUpdateBook() {
+    while (true) {
+        // const { newBook, token } = yield take(ADD_BOOK);
+        // yield call(addUpdateFlow, newBook, token);
+    }
+};
+
+//DELETE BOOK
+function* addDeleteFlow(newBook: IBook, token: string) {
+    try {
+        // const res = yield call(Api.addBookRequest, newBook, token);
+        // yield put({ type: SAVE_BOOK, newBook: res.data });
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+};
+
+export function* watchDeleteBook() {
+    while (true) {
+        // const { newBook, token } = yield take(ADD_BOOK);
+        // yield call(addDeleteFlow, newBook, token);
+    }
+};
