@@ -6,6 +6,7 @@ export const SEND_LOGIN_DETAILS = 'SEND_LOGIN_DETAILS';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_USER = 'SAVE_USER';
 export const DELETE_USER = 'DELETE_USER';
+export const SEARCH_BY = 'SEARCH_BY';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -35,9 +36,15 @@ export interface IDeleteUser {
     type: typeof DELETE_USER;
 }
 
+export interface ISearchBy {
+    type: typeof SEARCH_BY;
+    searchBy: string;
+}
+
 export type appActionType = IFetchBooks
     | ISaveBooks
     | ISendLoginDetails
     | ISaveUser
     | ILogout
-    | IDeleteUser;
+    | IDeleteUser
+    | ISearchBy;

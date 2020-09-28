@@ -19,3 +19,10 @@ export function logout(): AppActions.ILogout {
         type: AppActions.LOGOUT,
     }
 }
+
+export function searchBook(searchBy: string): AppActions.ISearchBy {
+    return {
+        type: AppActions.SEARCH_BY,
+        searchBy: searchBy
+    }
+}
