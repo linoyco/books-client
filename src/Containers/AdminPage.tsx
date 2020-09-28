@@ -15,7 +15,8 @@ const AdminPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
     const history = useHistory();
 
-    const [open, setOpen] = React.useState<boolean>(false);
+    const [openEdit, setOpenEdit] = React.useState<boolean>(false);
+    const [openAdd, setOpenAdd] = React.useState<boolean>(false);
 
     const [searchBy, setSearchBy] = React.useState<string>('');
 
@@ -44,7 +45,7 @@ const AdminPage: React.FunctionComponent = () => {
                     publisher={book.publisher.publisherName}
                     starNumber={book.stars}
                     price={book.price} />
-                <CustomButton text='edit' onClick={() => console.log(book.stars)} />
+                <CustomButton text='edit' onClick={() => setOpenEdit(true)} />
             </div>
         );
     }
@@ -59,17 +60,26 @@ const AdminPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
-                <CustomButton text='new book' onClick={() => setOpen(true)} />
+                <CustomButton text='new book' onClick={() => setOpenAdd(true)} />
             </div>
             <div className='Cards'>
                 {mapBooksList()}
             </div>
             <CustomDialog
-                open={open}
-                onClickCancel={() => [setOpen(false)]}
-                onSubmitForm={() => [setOpen(false)]}
+                open={openAdd}
+                onClickCancel={() => setOpenAdd(false)}
+                onSubmitForm={() => setOpenAdd(false)}
                 title='Create new book'
-                selectSubmitButtonName={'OK'}
+                selectSubmitButtonName={'Save'}
+                mood='add'
+            />
+            <CustomDialog
+                open={openEdit}
+                onClickCancel={() => setOpenEdit(false)}
+                onSubmitForm={() => setOpenEdit(false)}
+                title='Edit'
+                selectSubmitButtonName={'Update'}
+                mood='edit'
             />
         </StyledDiv>
     );

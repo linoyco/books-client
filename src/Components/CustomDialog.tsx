@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import CustomButton from './CustomButton';
+import CustomTextField from './CustomTextField';
 
 interface IProps {
     open: boolean;
@@ -8,16 +9,42 @@ interface IProps {
     onSubmitForm: any;
     selectSubmitButtonName: string;
     onClickCancel?: any;
+    mood?: string;
 }
 
-const CustomDialog: React.FunctionComponent<IProps> = ({ open, title, onSubmitForm, selectSubmitButtonName, onClickCancel }) => (
-    <Dialog open={open}>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
-            <CustomButton text={selectSubmitButtonName} onClick={onSubmitForm} />
-            <CustomButton text='Cancel' onClick={onClickCancel} />
-        </DialogContent>
-    </Dialog>
-);
+const CustomDialog: React.FunctionComponent<IProps> = ({ mood, open, title, onSubmitForm, selectSubmitButtonName, onClickCancel }) => {
+
+    const checkMood = () => {
+        if (mood === 'add') {
+            console.log(mood);
+            return <CustomTextField
+                label='Password'
+                type='password'
+                value={'password'}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
+                errorMessage=''
+            />
+        } else if (mood === 'edit') {
+            return <CustomTextField
+                label='Password'
+                type='password'
+                value={'password'}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
+                errorMessage=''
+            />
+        } else return;
+    }
+
+    return (
+        <Dialog open={open}>
+            <DialogTitle>{title}</DialogTitle>
+            <DialogContent>
+                {checkMood()}
+                <CustomButton text={selectSubmitButtonName} onClick={onSubmitForm} />
+                <CustomButton text='Cancel' onClick={onClickCancel} />
+            </DialogContent>
+        </Dialog>
+    );
+}
 
 export default CustomDialog;
