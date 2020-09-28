@@ -5,6 +5,7 @@ export const SAVE_BOOKS = 'SAVE_BOOKS';
 export const SEND_LOGIN_DETAILS = 'SEND_LOGIN_DETAILS';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_USER = 'SAVE_USER';
+export const DELETE_USER = 'DELETE_USER';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -30,8 +31,13 @@ export interface ILogout {
     type: typeof LOGOUT;
 }
 
+export interface IDeleteUser {
+    type: typeof DELETE_USER;
+}
+
 export type appActionType = IFetchBooks
     | ISaveBooks
     | ISendLoginDetails
     | ISaveUser
-    | ILogout;
+    | ILogout
+    | IDeleteUser;

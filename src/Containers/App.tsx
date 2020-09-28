@@ -83,12 +83,12 @@ const App: React.FunctionComponent = () => {
 
   const handleLogInOut = (clicked: string) => {
 
-    // if (clicked === 'LogOut') {
-    //   history.push('/');
-    //   //dispatch logout
-    // } else {
-    //   history.push('/login');
-    // }
+    if (clicked === 'LogOut') {
+      history.push('/');
+      //dispatch logout
+    } else {
+      history.push('/login');
+    }
   }
 
   return (

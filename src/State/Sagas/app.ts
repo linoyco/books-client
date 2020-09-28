@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { FETCH_BOOKS, SAVE_BOOKS, SAVE_USER, SEND_LOGIN_DETAILS } from '../Actions/App/types';
+import { DELETE_USER, FETCH_BOOKS, LOGOUT, SAVE_BOOKS, SAVE_USER, SEND_LOGIN_DETAILS } from '../Actions/App/types';
 import * as Api from '../../Api';
 
 //GET BOOKS
@@ -48,3 +48,23 @@ export function* watchLogin() {
 };
 
 //LOGOUT
+function* LogoutFlow() {
+    try {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
+
+        const res = yield call(Api.logoutRequest);
+        yield put({ type: DELETE_USER });
+        console.log(res.data);
+    }
+    catch (error) {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
+        console.log(error.message);
+    }
+};
+
+export function* watchLogout() {
+    while (true) {
+        yield take(LOGOUT);
+        yield call(LogoutFlow);
+    }
+};
