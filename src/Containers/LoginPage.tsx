@@ -12,9 +12,9 @@ import CustomButton from '../Components/CustomButton';
 const LoginDiv: any = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 78vh;
+    height: 67vh;
+    
 
     .Fields{
         display: flex;
