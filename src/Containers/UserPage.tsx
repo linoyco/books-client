@@ -1,11 +1,10 @@
 import React from 'react';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
-import CustomDialog from '../Components/CustomDialog';
 import CustomTextField from '../Components/CustomTextField';
 import { purchase, searchBook, lastPurchase } from '../State/Actions/App';
 import { StyledDiv } from './HomePage';
@@ -13,15 +12,18 @@ import CustomButton from '../Components/CustomButton';
 
 const UserPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
+    const history = useHistory();
 
-    const [open, setOpen] = React.useState<boolean>(false);
     const [searchBy, setSearchBy] = React.useState<string>('');
-    const [purchaseBook, setPurchaseBook] = React.useState<string>('');
-    const [bookPrice, setBookPrice] = React.useState<string>('');
 
     const booksList: Array<IBook> = useSelector((state: any) => state.app.booksList);
     const userDetails: IUser = useSelector((state: any) => state.app.userDetails);
     const userLastPurchase: IBook = useSelector((state: any) => state.app.lastPurchase);
+
+    React.useEffect(() => {
+        if (userDetails.token === '')
+            history.push('/');
+    }, []);
 
     React.useEffect(() => {
         mapBooksList();
@@ -36,8 +38,6 @@ const UserPage: React.FunctionComponent = () => {
 
     React.useEffect(() => {
         getLastPurchase();
-        console.log(userLastPurchase.bookName);
-        
     }, [userLastPurchase.bookName]);
 
     const mapBooksList = () => {
@@ -73,13 +73,6 @@ const UserPage: React.FunctionComponent = () => {
             <div className='Cards'>
                 {mapBooksList()}
             </div>
-            {/* <CustomDialog
-                open={open}
-                onClickCancel={() => setOpen(false)}
-                onSubmitForm={() => [setOpen(false), dispatch(purchase(purchaseBook, userDetails.token))]}
-                title={`Total Price: ${bookPrice}$`}
-                selectSubmitButtonName={'OK'}
-            /> */}
         </StyledDiv>
     );
 }
