@@ -10,9 +10,19 @@ const HomePage: React.FunctionComponent = () => {
 
     const booksList: Array<IBook> = useSelector((state: any) => state.app.booksList);
 
+    const handleBuyClicked = () => {
+
+    }
+
     return (
         <div>
-            <CustomCard  />
+            <CustomCard
+                buttonText='buy'
+                bookName='string'
+                authorName='string'
+                imageUrl=''
+                price='55'
+                onClick={handleBuyClicked} />
         </div>
     );
 }
