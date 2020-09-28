@@ -55,8 +55,9 @@ export const updateBookRequest = (updatebook: IBook, bookID: string, token: stri
 }
 
 //ADMIN - delete book
-export const deleteBookRequest = (bookID: string, token: string) => {
-    return Axios.patch(DELETE_BOOK_URL, bookID, {
+export const deleteBookRequest = (bookId: string, token: string) => {
+    const obj = { bookId: bookId }
+    return Axios.patch(DELETE_BOOK_URL, bookId, {
         headers: { 'Authorization': `Bearer ${token}` }
     });
 }

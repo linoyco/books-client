@@ -1,7 +1,8 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
+import { ADD_BOOK, DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
 import * as Api from '../../Api';
+import { IBook } from '../../Api/ApiObject';
 
 //GET BOOKS
 function* fetchBooksFlow() {
@@ -93,12 +94,10 @@ export function* watchPurchase() {
     }
 };
 
-//LAST Purchase
+//LAST PURCHASE
 function* lastPurchaseFlow(bookId: string, token: string) {
     try {
         const res = yield call(Api.lastPurchaseRequest, bookId, token);
-        console.log(res.data);
-
         yield put({ type: SAVE_LAST_PURCHASE, lastPurchase: res.data });
     }
     catch (error) {
@@ -110,5 +109,24 @@ export function* watchLastPurchase() {
     while (true) {
         const { bookId, token } = yield take(LAST_PURCHASE);
         yield call(lastPurchaseFlow, bookId, token);
+    }
+};
+
+
+//ADD BOOK
+function* addBookFlow(newBook: IBook, token: string) {
+    try {
+        const res = yield call(Api.addBookRequest, newBook, token);
+        yield put({ type: SAVE_BOOK, newBook: res.data });
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+};
+
+export function* watchAddBook() {
+    while (true) {
+        const { newBook, token } = yield take(ADD_BOOK);
+        yield call(addBookFlow, newBook, token);
     }
 };

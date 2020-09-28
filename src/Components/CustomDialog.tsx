@@ -10,18 +10,65 @@ interface IProps {
     selectSubmitButtonName: string;
     onClickCancel?: any;
     mood?: string;
+
+    bookName?: string;
+    authorName?: string;
+    publisherName?: string;
+    price?: string;
+    imageURL?: string;
+
+    onChangeBookName?: any;
+    onChangeAuthorName?: any;
+    onChangePublisherName?: any;
+    onChangePrice?: any;
+    onChangeImageURL?: any;
 }
 
-const CustomDialog: React.FunctionComponent<IProps> = ({ mood, open, title, onSubmitForm, selectSubmitButtonName, onClickCancel }) => {
+const CustomDialog: React.FunctionComponent<IProps> = ({ onChangeImageURL, onChangePrice, onChangePublisherName, onChangeAuthorName, onChangeBookName, imageURL, price, publisherName, authorName, bookName, mood, open, title, onSubmitForm, selectSubmitButtonName, onClickCancel }) => {
+    // {
+    //     "bookName": "Linoyyyyyy",
+    //     "author": {
+    //         "fullName": "lala blala",
+    //         "age": "20"
+    //     },
+    //     "publisher": {
+    //         "publisherName": "sshimi",
+    //         "year": "2020"
+    //     },
+    //     "price": "65",
+    //     "imageURL": "www.bljjaba.com"
+    // }
 
     const checkMood = () => {
         if (mood === 'add') {
-            console.log(mood);
-            return <CustomTextField
-                label=''
-                value={''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
-            />
+            return <div>
+                <CustomTextField
+                    label='Book name'
+                    value={bookName || ''}
+                    onChange={onChangeBookName}
+                />
+                <CustomTextField
+                    label='Author Name'
+                    value={authorName || ''}
+                    onChange={onChangeAuthorName}
+                />
+                <CustomTextField
+                    label='Publisher name'
+                    value={publisherName || ''}
+                    onChange={onChangePublisherName}
+                />
+                <CustomTextField
+                    label='Price'
+                    value={price || ''}
+                    onChange={onChangePrice}
+                />
+                <CustomTextField
+                    label='Image URL'
+                    value={imageURL || ''}
+                    onChange={onChangeImageURL}
+                />
+            </div>
+
         } else if (mood === 'edit') {
             return <CustomTextField
                 label=''

@@ -7,13 +7,19 @@ import { StyledDiv } from './HomePage';
 import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
 import CustomTextField from '../Components/CustomTextField';
-import { searchBook } from '../State/Actions/App';
+import { addBook, searchBook } from '../State/Actions/App';
 import CustomButton from '../Components/CustomButton';
 import CustomDialog from '../Components/CustomDialog';
 
 const AdminPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
     const history = useHistory();
+
+    const [localBookName, setLocalBookName] = React.useState<string>('');
+    const [localAuthorName, setLocalAuthorName] = React.useState<string>('');
+    const [localPublisherName, setLocalPublisherName] = React.useState<string>('');
+    const [localPrice, setLocalPrice] = React.useState<string>('');
+    const [localImageUrl, setLocalImageUrl] = React.useState<string>('');
 
     const [openEdit, setOpenEdit] = React.useState<boolean>(false);
     const [openAdd, setOpenAdd] = React.useState<boolean>(false);
@@ -50,6 +56,19 @@ const AdminPage: React.FunctionComponent = () => {
         );
     }
 
+    const onSubmitAdd = async () => {
+        const newBook: IBook = {
+            bookName: localBookName,
+            author: { fullName: localAuthorName, age: '40' },
+            imageURL: localImageUrl,
+            price: localPrice,
+            publisher: { publisherName: localPublisherName, year: '2009' },
+            stars: 4
+        }
+        await dispatch(addBook(newBook, userDetails.token));
+        setOpenAdd(false);
+    }
+
     return (
         <StyledDiv>
             <div className='Field'>
@@ -68,11 +87,24 @@ const AdminPage: React.FunctionComponent = () => {
             <CustomDialog
                 open={openAdd}
                 onClickCancel={() => setOpenAdd(false)}
-                onSubmitForm={() => setOpenAdd(false)}
+                onSubmitForm={() => onSubmitAdd()}
                 title='Create new book'
                 selectSubmitButtonName={'Save'}
                 mood='add'
+
+                bookName={localBookName}
+                authorName={localAuthorName}
+                publisherName={localPublisherName}
+                price={localPrice}
+                imageURL={localImageUrl}
+
+                onChangeBookName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalBookName(e.target.value)}
+                onChangeAuthorName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalAuthorName(e.target.value)}
+                onChangePublisherName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalPublisherName(e.target.value)}
+                onChangePrice={(e: React.ChangeEvent<HTMLInputElement>) => setLocalPrice(e.target.value)}
+                onChangeImageURL={(e: React.ChangeEvent<HTMLInputElement>) => setLocalImageUrl(e.target.value)}
             />
+
             <CustomDialog
                 open={openEdit}
                 onClickCancel={() => setOpenEdit(false)}

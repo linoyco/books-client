@@ -1,3 +1,4 @@
+import { IBook } from '../../../Api/ApiObject';
 import * as AppActions from './types';
 
 export function fetchBooks(): AppActions.IFetchBooks {
@@ -39,6 +40,14 @@ export function lastPurchase(bookId: string, token: string): AppActions.ILastPur
     return {
         type: AppActions.LAST_PURCHASE,
         bookId: bookId,
+        token: token
+    }
+}
+
+export function addBook(newBook: IBook, token: string): AppActions.IAddBook {
+    return {
+        type: AppActions.ADD_BOOK,
+        newBook: newBook,
         token: token
     }
 }

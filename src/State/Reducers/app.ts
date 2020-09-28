@@ -1,7 +1,7 @@
 import produce from 'immer';
 
 import { IBook, IUser } from '../../Api/ApiObject';
-import { appActionType, DELETE_USER, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER } from '../Actions/App/types';
+import { appActionType, DELETE_USER, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER } from '../Actions/App/types';
 
 export interface IAppState {
     booksList: Array<IBook>;
@@ -51,6 +51,9 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
                 break;
             case SAVE_LAST_PURCHASE:
                 draft.lastPurchase = action.lastPurchase;
+                break;
+            case SAVE_BOOK:
+                draft.booksList.push(action.newBook);
                 break;
         }
     });
