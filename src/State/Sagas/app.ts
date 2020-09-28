@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { DELETE_USER, FETCH_BOOKS, LOGOUT, SAVE_BOOKS, SAVE_USER, SEND_LOGIN_DETAILS } from '../Actions/App/types';
+import { DELETE_USER, FETCH_BOOKS, LOGOUT, SAVE_BOOKS, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
 import * as Api from '../../Api';
 
 //GET BOOKS
@@ -10,7 +10,6 @@ function* fetchBooksFlow() {
 
         const res = yield call(Api.getBooksRequest);
         yield put({ type: SAVE_BOOKS, booksList: res.data });
-        console.log(res.data);
     }
     catch (error) {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
@@ -51,9 +50,8 @@ function* LogoutFlow() {
     try {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
 
-        const res = yield call(Api.logoutRequest);
+        yield call(Api.logoutRequest);
         yield put({ type: DELETE_USER });
-        console.log(res.data);
     }
     catch (error) {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
@@ -65,5 +63,28 @@ export function* watchLogout() {
     while (true) {
         yield take(LOGOUT);
         yield call(LogoutFlow);
+    }
+};
+
+//SEARCH
+function* searchByFlow(searchBy: string) {
+    try {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
+        console.log(searchBy);
+
+        const res = yield call(Api.searchRequest, searchBy);
+        // yield put({ type: DELETE_USER });
+        console.log('>>', res.data);
+    }
+    catch (error) {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
+        console.log(error.message);
+    }
+};
+
+export function* watchSearchBy() {
+    while (true) {
+        const { searchBy } = yield take(SEARCH_BY);
+        yield call(searchByFlow, searchBy);
     }
 };

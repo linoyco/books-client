@@ -66,11 +66,10 @@ const HomePage: React.FunctionComponent = () => {
                     errorMessage=''
                     label='Search'
                     value={searchBy}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(searchBy))]}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
             </div>
-
             <div className='Cards'>
                 {mapBooksList()}
             </div>
