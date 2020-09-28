@@ -50,6 +50,7 @@ const UserPage: React.FunctionComponent = () => {
                     authorName={book.author.fullName}
                     imageUrl={book.imageURL}
                     publisher={book.publisher.publisherName}
+                    starNumber={book.stars}
                     price={book.price} />
                 <CustomButton text='buy' onClick={() => [dispatch(purchase(book._id ? book._id : '', userDetails.token))]} />
             </div>

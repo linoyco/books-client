@@ -1,6 +1,7 @@
-import { CardMedia } from '@material-ui/core';
 import * as React from 'react';
 import styled from 'styled-components';
+import { Box, CardMedia, Typography } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 
 const StyledDiv: any = styled.div`
     display: flex;
@@ -29,6 +30,13 @@ const StyledDiv: any = styled.div`
     .SubTitle{
         font-weight: normal;
     }
+
+    .Stars{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 interface IProps {
@@ -38,9 +46,10 @@ interface IProps {
     price?: string;
     publisher?: string;
     buttonText: string;
+    starNumber?: number;
 }
 
-const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, authorName, price, publisher }) => (
+const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, authorName, price, publisher, starNumber }) => (
     <StyledDiv>
         <div className='ImgAndBook'>
             <CardMedia className='IMG' component='img' image={imageUrl} />
@@ -49,6 +58,9 @@ const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, autho
                 <span>Author: <span className='SubTitle'>{authorName}</span></span>
                 <span>Price: <span className='SubTitle'>{price}$</span></span>
                 <span>Publisher: <span className='SubTitle'>{publisher}</span></span>
+            </div>
+            <div className='Stars'>
+                <Rating name="read-only" value={starNumber} readOnly />
             </div>
         </div>
     </StyledDiv>

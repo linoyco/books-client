@@ -72,6 +72,7 @@ const HomePage: React.FunctionComponent = () => {
                     authorName={book.author.fullName}
                     imageUrl={book.imageURL}
                     publisher={book.publisher.publisherName}
+                    starNumber={book.stars}
                     price={book.price} />
                 <CustomButton text='buy' onClick={() => handleBuyClicked()} />
             </div>
