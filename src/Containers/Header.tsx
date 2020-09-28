@@ -11,7 +11,7 @@ import { logout } from '../State/Actions/App';
 const StyledDiv: any = styled.div`
     display: flex;
     flex-direction: row-reverse;
-    // justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     padding: 1%;
@@ -41,6 +41,7 @@ const Header: React.FunctionComponent = () => {
     return (
         <StyledDiv>
             <CustomButton text={logInOut} onClick={handleLogInOutClicked} />
+            <p>last purchase</p>
         </StyledDiv>
     );
 }

@@ -40,7 +40,7 @@ const LoginPage: React.FunctionComponent = () => {
     React.useEffect(() => {
         if (userDetails.permission === 'Admin') {
             history.push('/admin');
-        } else if (userDetails.permission === 'Customer') {
+        } else if (userDetails.permission === 'Customer' && userDetails.fullName) {
             history.push('/user');
         } else {
             history.push('/login');
