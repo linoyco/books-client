@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 import CustomTextField from '../Components/CustomTextField';
 import { sendLoginDetails } from '../State/Actions/App';
 import { IUser } from '../Api/ApiObject';
+import CustomButton from '../Components/CustomButton';
 
 const LoginDiv: any = styled.div`
     display: flex;
@@ -26,7 +26,6 @@ const LoginDiv: any = styled.div`
         border-radius: 5px;
         padding: 5%;
     }
-
 `;
 
 const LoginPage: React.FunctionComponent = () => {
@@ -71,10 +70,10 @@ const LoginPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     errorMessage=''
                 />
-                <Button type='submit' variant='outlined'>Submit</Button>
+                <CustomButton text='Submit' />
             </form>
         </LoginDiv>
-    )
+    );
 }
 
 export default LoginPage;
