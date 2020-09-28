@@ -7,18 +7,6 @@ const StyledDiv: any = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin:1%;
-
-    .Card{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        border: 1px solid #14BDEB;
-        border-radius: 5px;
-        width: 90%;
-        padding: 1%;
-    }
 
     .ImgAndBook{
         display: flex;
@@ -42,7 +30,6 @@ const StyledDiv: any = styled.div`
     .SubTitle{
         font-weight: normal;
     }
-
 `;
 
 interface IProps {
@@ -50,22 +37,19 @@ interface IProps {
     authorName?: string;
     imageUrl?: string;
     price?: string;
+    publisher?: string;
     buttonText: string;
-    onClick?: any;
 }
 
-const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, authorName, price }) => (
+const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, authorName, price, publisher }) => (
     <StyledDiv>
-        <div className='Card'>
-            <div className='BooksDetails'>
-                <div className='ImgAndBook'>
-                    <CardMedia className='IMG' component='img' image={'https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg' || imageUrl} />
-                    <div className='BookText'>
-                        <span>Book name: <span className='SubTitle'>{bookName}</span> </span>
-                        <span>Author: <span className='SubTitle'>{authorName}</span></span>
-                        <span>Price: <span className='SubTitle'>{price}$</span></span>
-                    </div>
-                </div>
+        <div className='ImgAndBook'>
+            <CardMedia className='IMG' component='img' image={imageUrl} />
+            <div className='BookText'>
+                <span>Book name: <span className='SubTitle'>{bookName}</span> </span>
+                <span>Author: <span className='SubTitle'>{authorName}</span></span>
+                <span>Price: <span className='SubTitle'>{price}$</span></span>
+                <span>Publisher: <span className='SubTitle'>{publisher}</span></span>
             </div>
         </div>
     </StyledDiv>

@@ -31,16 +31,15 @@ const UserPage: React.FunctionComponent = () => {
 
     const mapBooksList = () => {
         if (booksList.length === 0) { return <div></div>; }
-
         return booksList.map(book =>
-            <div key={book._id}>
+            <div className='Card' key={book._id}>
                 <CustomCard
                     buttonText='buy'
                     bookName={book.bookName}
                     authorName={book.author.fullName}
                     imageUrl={book.imageURL}
-                    price={book.price}
-                    onClick={handleBuyClicked} />
+                    publisher={book.publisher.publisherName}
+                    price={book.price} />
                 <CustomButton text='buy' onClick={() => handleBuyClicked(book._id ? book._id : '')} />
             </div>
         );

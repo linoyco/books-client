@@ -9,6 +9,7 @@ import CustomCard from '../Components/CustomCard';
 import CustomDialog from '../Components/CustomDialog';
 import CustomTextField from '../Components/CustomTextField';
 import { searchBook } from '../State/Actions/App';
+import CustomButton from '../Components/CustomButton';
 
 export const StyledDiv: any = styled.div`
     display: flex;
@@ -26,6 +27,18 @@ export const StyledDiv: any = styled.div`
         height: 80%;
         overflow: auto;
     }
+
+    .Card{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border: 1px solid #14BDEB;
+        border-radius: 5px;
+        width: 90%;
+        padding: 1%;
+        margin:1%;
+    }
 `;
 
 const HomePage: React.FunctionComponent = () => {
@@ -40,7 +53,7 @@ const HomePage: React.FunctionComponent = () => {
     const handleBuyClicked = () => {
         setOpen(true);
     }
-    
+
     React.useEffect(() => {
         mapBooksList();
     }, [booksList.length]);
@@ -48,14 +61,15 @@ const HomePage: React.FunctionComponent = () => {
     const mapBooksList = () => {
         if (booksList.length === 0) { return <div></div>; }
         return booksList.map(book =>
-            <div key={book._id}>
+            <div className='Card' key={book._id}>
                 <CustomCard
                     buttonText='buy'
                     bookName={book.bookName}
                     authorName={book.author.fullName}
                     imageUrl={book.imageURL}
-                    price={book.price}
-                    onClick={handleBuyClicked} />
+                    publisher={book.publisher.publisherName}
+                    price={book.price} />
+                <CustomButton text='buy' onClick={() => handleBuyClicked()} />
             </div>
         );
     }
