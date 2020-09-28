@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
 import AppRoutes from './AppRoutes';
-import { fetchBooks, logout } from '../State/Actions/App';
+import { fetchBooks } from '../State/Actions/App';
 import { IUser } from '../Api/ApiObject';
+import { Avatar } from '@material-ui/core';
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -56,6 +57,12 @@ const GlobalStyle = createGlobalStyle`
     font-weigh: bold;
     text-shadow: 3px 3px 4px white; 
   }
+
+  .UserDetails{
+    display: flex;
+    align-items: center;
+
+  }
 `;
 
 const App: React.FunctionComponent = () => {
@@ -67,13 +74,15 @@ const App: React.FunctionComponent = () => {
     dispatch(fetchBooks());
   }, []);
 
+  const userIMG = userDetails.imageURL ? <Avatar /> : null;
+
   return (
     <div className='App'>
       <GlobalStyle />
       <div className='RootDiv'>
         <div className='Header'>
           <p className='Header-Text'>Welcome</p>
-          <p>{userDetails.fullName}</p>
+          <div className='UserDetails'>{userIMG}<p>{userDetails.fullName}</p></div>
         </div>
         <AppRoutes />
       </div>

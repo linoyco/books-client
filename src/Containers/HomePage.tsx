@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { IBook } from '../Api/ApiObject';
+import CustomCard from '../Components/CustomCard';
 
 const HomePage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
@@ -11,7 +12,7 @@ const HomePage: React.FunctionComponent = () => {
 
     return (
         <div>
-            Hello
+            <CustomCard  />
         </div>
     );
 }
