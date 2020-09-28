@@ -70,8 +70,9 @@ export const purchaseBookRequest = (bookId: string, token: string) => {
 }
 
 //USER - last purchase
-export const lastPurchaseRequest = (bookID: string, token: string) => {
-    return Axios.patch(LAST_PURCHASE_URL, bookID, {
+export const lastPurchaseRequest = (bookId: string, token: string) => {
+    const obj = { bookId: bookId }
+    return Axios.patch(LAST_PURCHASE_URL, obj, {
         headers: { 'Authorization': `Bearer ${token}` }
     });
 }

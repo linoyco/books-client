@@ -1,11 +1,12 @@
 import produce from 'immer';
 
 import { IBook, IUser } from '../../Api/ApiObject';
-import { appActionType, DELETE_USER, SAVE_BOOKS, SAVE_USER } from '../Actions/App/types';
+import { appActionType, DELETE_USER, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER } from '../Actions/App/types';
 
 export interface IAppState {
     booksList: Array<IBook>;
     userDetails: IUser;
+    lastPurchase: IBook;
 }
 
 const initialState: IAppState = {
@@ -15,10 +16,15 @@ const initialState: IAppState = {
         permission: '',
         fullName: '',
         imageURL: '',
-        lastPurchase: {
-            date: '',
-            bookId: ''
-        },
+        lastPurchase: { date: '', bookId: '' }
+    },
+    lastPurchase: {
+        author: { fullName: '', age: '' },
+        bookName: '',
+        imageURL: '',
+        price: '',
+        publisher: { publisherName: '', year: '' },
+        stars: 0,
     }
 }
 
@@ -42,6 +48,10 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
                         date: ''
                     }
                 }
+                break;
+            case SAVE_LAST_PURCHASE:
+                draft.lastPurchase = action.lastPurchase;
+                break;
         }
     });
 }

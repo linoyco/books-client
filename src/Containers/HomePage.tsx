@@ -19,6 +19,10 @@ export const StyledDiv: any = styled.div`
 
     .Field{
         height: 20%;
+        display: flex;
+        justify-content: space-between;
+        font-weight: normal;
+        margin: 2%;
     }
 
     .Cards{

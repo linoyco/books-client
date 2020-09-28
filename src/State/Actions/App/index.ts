@@ -34,3 +34,11 @@ export function purchase(bookId: string, token: string): AppActions.IPurchase {
         token: token
     }
 }
+
+export function lastPurchase(bookId: string, token: string): AppActions.ILastPurchase {
+    return {
+        type: AppActions.LAST_PURCHASE,
+        bookId: bookId,
+        token: token
+    }
+}

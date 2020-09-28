@@ -8,6 +8,8 @@ export const SAVE_USER = 'SAVE_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const SEARCH_BY = 'SEARCH_BY';
 export const PURCHASE = 'PURCHASE';
+export const LAST_PURCHASE = 'LAST_PURCHASE';
+export const SAVE_LAST_PURCHASE = 'SAVE_LAST_PURCHASE';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -48,6 +50,17 @@ export interface IPurchase {
     token: string;
 }
 
+export interface ILastPurchase {
+    type: typeof LAST_PURCHASE;
+    bookId: string;
+    token: string;
+}
+
+export interface ISaveLastPurchase {
+    type: typeof SAVE_LAST_PURCHASE;
+    lastPurchase: IBook;
+}
+
 export type appActionType = IFetchBooks
     | ISaveBooks
     | ISendLoginDetails
@@ -55,4 +68,6 @@ export type appActionType = IFetchBooks
     | ILogout
     | IDeleteUser
     | ISearchBy
-    | IPurchase;
+    | IPurchase
+    | ILastPurchase
+    | ISaveLastPurchase;

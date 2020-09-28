@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { DELETE_USER, FETCH_BOOKS, LOGOUT, PURCHASE, SAVE_BOOKS, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
+import { DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS } from '../Actions/App/types';
 import * as Api from '../../Api';
 
 //GET BOOKS
@@ -100,5 +100,27 @@ export function* watchPurchase() {
     while (true) {
         const { bookId, token } = yield take(PURCHASE);
         yield call(purchaseFlow, bookId, token);
+    }
+};
+
+//LAST Purchase
+function* lastPurchaseFlow(bookId: string, token: string) {
+    try {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });        
+        const res = yield call(Api.lastPurchaseRequest, bookId, token);
+        console.log(res.data);
+
+        yield put({ type: SAVE_LAST_PURCHASE, lastPurchase: res.data });
+    }
+    catch (error) {
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });
+        console.log(error.message);
+    }
+};
+
+export function* watchLastPurchase() {
+    while (true) {
+        const { bookId, token } = yield take(LAST_PURCHASE);
+        yield call(lastPurchaseFlow, bookId, token);
     }
 };
