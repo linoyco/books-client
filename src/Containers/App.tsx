@@ -76,12 +76,14 @@ const App: React.FunctionComponent = () => {
 
   const userIMG = userDetails.fullName ? <Avatar /> : null;
 
+  const admin = userDetails.permission === 'Admin' ? ' back, Admin' : null;
+
   return (
     <div className='App'>
       <GlobalStyle />
       <div className='RootDiv'>
         <div className='Header'>
-          <p className='Header-Text'>Welcome</p>
+          <p className='Header-Text'>Welcome{admin}</p>
           <div className='UserDetails'>{userIMG}<p>{userDetails.fullName}</p></div>
         </div>
         <AppRoutes />

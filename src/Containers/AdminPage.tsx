@@ -7,7 +7,7 @@ import { StyledDiv } from './HomePage';
 import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
 import CustomTextField from '../Components/CustomTextField';
-import { purchase, searchBook } from '../State/Actions/App';
+import { searchBook } from '../State/Actions/App';
 import CustomButton from '../Components/CustomButton';
 
 const AdminPage: React.FunctionComponent = () => {
@@ -39,15 +39,15 @@ const AdminPage: React.FunctionComponent = () => {
                     authorName={book.author.fullName}
                     imageUrl={book.imageURL}
                     publisher={book.publisher.publisherName}
+                    starNumber={book.stars}
                     price={book.price} />
-                <CustomButton text='edit' onClick={() => console.log(book)} />
+                <CustomButton text='edit' onClick={() => console.log(book.stars)} />
             </div>
         );
     }
 
     return (
         <StyledDiv>
-            <span>Hello Admin!</span>
             <div className='Field'>
                 <CustomTextField
                     errorMessage=''
@@ -56,6 +56,7 @@ const AdminPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
+                <CustomButton text='new book' />
             </div>
             <div className='Cards'>
                 {mapBooksList()}

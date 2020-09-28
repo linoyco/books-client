@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Box, CardMedia, Typography } from '@material-ui/core';
+import { CardMedia } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 
 const StyledDiv: any = styled.div`
@@ -60,7 +60,7 @@ const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, autho
                 <span>Publisher: <span className='SubTitle'>{publisher}</span></span>
             </div>
             <div className='Stars'>
-                <Rating name="read-only" value={starNumber} readOnly />
+                <Rating name="half-rating-read" value={starNumber || 4.5} readOnly />
             </div>
         </div>
     </StyledDiv>
