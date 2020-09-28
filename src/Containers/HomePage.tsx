@@ -22,7 +22,7 @@ export const StyledDiv: any = styled.div`
         display: flex;
         justify-content: space-between;
         font-weight: normal;
-        margin: 2%;
+        margin: 1%;
     }
 
     .Cards{
