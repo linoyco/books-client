@@ -58,7 +58,7 @@ const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, buttonText, onC
         <div className='Card'>
             <div className='BooksDetails'>
                 <div className='ImgAndBook'>
-                    <CardMedia className='IMG' component='img' image={imageUrl || 'https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg'} />
+                    <CardMedia className='IMG' component='img' image={'https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg' || imageUrl} />
                     <div className='BookText'>
                         <span>Book name: <span className='SubTitle'>{bookName}</span> </span>
                         <span>Author: <span className='SubTitle'>{authorName}</span></span>

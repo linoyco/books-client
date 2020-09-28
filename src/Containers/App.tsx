@@ -74,7 +74,7 @@ const App: React.FunctionComponent = () => {
     dispatch(fetchBooks());
   }, []);
 
-  const userIMG = userDetails.imageURL ? <Avatar /> : null;
+  const userIMG = userDetails.fullName ? <Avatar /> : null;
 
   return (
     <div className='App'>
