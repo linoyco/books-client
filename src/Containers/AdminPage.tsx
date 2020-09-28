@@ -9,10 +9,13 @@ import CustomCard from '../Components/CustomCard';
 import CustomTextField from '../Components/CustomTextField';
 import { searchBook } from '../State/Actions/App';
 import CustomButton from '../Components/CustomButton';
+import CustomDialog from '../Components/CustomDialog';
 
 const AdminPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
     const history = useHistory();
+
+    const [open, setOpen] = React.useState<boolean>(false);
 
     const [searchBy, setSearchBy] = React.useState<string>('');
 
@@ -56,11 +59,18 @@ const AdminPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
-                <CustomButton text='new book' />
+                <CustomButton text='new book' onClick={() => setOpen(true)} />
             </div>
             <div className='Cards'>
                 {mapBooksList()}
             </div>
+            <CustomDialog
+                open={open}
+                onClickCancel={() => [setOpen(false)]}
+                onSubmitForm={() => [setOpen(false)]}
+                title='Create new book'
+                selectSubmitButtonName={'OK'}
+            />
         </StyledDiv>
     );
 }
