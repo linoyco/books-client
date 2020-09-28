@@ -36,7 +36,8 @@ export const getBooksRequest = () => {
 //FREE - search book
 export const searchRequest = (q: string) => {
     const url = `${SEARCH_URL}`;
-    return Axios.patch(url, q);
+    const obj = { q: q }
+    return Axios.patch(url, obj);
 }
 
 //ADMIN - add book
