@@ -54,7 +54,7 @@ interface IProps {
     onClick?: any;
 }
 
-const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, buttonText, onClick, bookName, authorName, price }) => (
+const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, bookName, authorName, price }) => (
     <StyledDiv>
         <div className='Card'>
             <div className='BooksDetails'>
@@ -67,7 +67,6 @@ const CustomCard: React.FunctionComponent<IProps> = ({ imageUrl, buttonText, onC
                     </div>
                 </div>
             </div>
-            <CustomButton text={buttonText} onClick={onClick} />
         </div>
     </StyledDiv>
 );

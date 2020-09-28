@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -10,7 +10,7 @@ import CustomDialog from '../Components/CustomDialog';
 import CustomTextField from '../Components/CustomTextField';
 import { searchBook } from '../State/Actions/App';
 
-const StyledDiv: any = styled.div`
+export const StyledDiv: any = styled.div`
     display: flex;
     flex-direction: column;
 
@@ -40,6 +40,7 @@ const HomePage: React.FunctionComponent = () => {
     const handleBuyClicked = () => {
         setOpen(true);
     }
+    
     React.useEffect(() => {
         mapBooksList();
     }, [booksList.length]);

@@ -74,7 +74,7 @@ function* searchByFlow(searchBy: string) {
 
         const res = yield call(Api.searchRequest, searchBy);
         // yield put({ type: DELETE_USER });
-        console.log('>>', res.data);
+        console.log('>>', res.data[0]);
     }
     catch (error) {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });

@@ -41,8 +41,6 @@ const Header: React.FunctionComponent = () => {
     return (
         <StyledDiv>
             <CustomButton text={logInOut} onClick={handleLogInOutClicked} />
-            <p>last purchase</p>
-            <p>search</p>
         </StyledDiv>
     );
 }

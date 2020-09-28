@@ -4,13 +4,12 @@ import * as React from 'react';
 interface IProps {
     text: string;
     onClick?: any;
-    typeSubmit?: boolean;
 }
 
-const CustomButton: React.FunctionComponent<IProps> = ({ text, onClick, typeSubmit }) => (
+const CustomButton: React.FunctionComponent<IProps> = ({ text, onClick }) => (
     <Button
         variant='outlined'
-        type={typeSubmit ? 'button' : 'submit'}
+        type='submit'
         onClick={onClick}>{text}</Button>
 );
 
