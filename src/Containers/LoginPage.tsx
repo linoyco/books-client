@@ -44,7 +44,7 @@ const LoginPage: React.FunctionComponent = () => {
         } else if (userDetails.permission === 'Customer') {
             history.push('/user');
         } else {
-            console.log('will send error message');
+            history.push('/login');
         }
     }, [userDetails]);
 

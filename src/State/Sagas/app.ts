@@ -11,7 +11,6 @@ function* fetchBooksFlow() {
         const res = yield call(Api.getBooksRequest);
         yield put({ type: SAVE_BOOKS, booksList: res.data });
         console.log(res.data);
-
     }
     catch (error) {
         // yield put({ type: SET_ERROR_MESSAGE, errorMessage: error.message });

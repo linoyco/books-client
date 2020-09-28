@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
 import AppRoutes from './AppRoutes';
-import { fetchBooks } from '../State/Actions/App';
+import { fetchBooks, logout } from '../State/Actions/App';
 import { IUser } from '../Api/ApiObject';
 
 const GlobalStyle = createGlobalStyle`
@@ -81,11 +81,10 @@ const App: React.FunctionComponent = () => {
     userDetails.fullName ? setLogInOut('LogOut') : setLogInOut('LogIn');
   }, [userDetails.fullName]);
 
-  const handleLogInOut = (clicked: string) => {
-
-    if (clicked === 'LogOut') {
+  const handleLogInOut = () => {
+    if (logInOut === 'LogOut') {
+      dispatch(logout());
       history.push('/');
-      //dispatch logout
     } else {
       history.push('/login');
     }
@@ -97,7 +96,7 @@ const App: React.FunctionComponent = () => {
       <div className='RootDiv'>
         <div className='Header'>
           <p className='Header-Text'>Welcome</p>
-          <Button className='Log' variant='outlined' onClick={() => handleLogInOut(logInOut)}>{logInOut}</Button>
+          <Button className='Log' variant='outlined' onClick={() => handleLogInOut()}>{logInOut}</Button>
         </div>
         <AppRoutes />
       </div>
