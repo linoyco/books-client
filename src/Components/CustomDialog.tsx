@@ -27,8 +27,8 @@ const CustomDialog: React.FunctionComponent<IProps> = ({ open, title, onSubmitFo
 
                 </StyledDiv>
                 <CustomButton text={selectSubmitButtonName} />
-                <CustomButton typeSubmit={false} text='Cancel' onClick={onClickCancel} />
             </form>
+            <CustomButton typeSubmit={false} text='Cancel' onClick={onClickCancel} />
         </DialogContent>
     </Dialog>
 );
