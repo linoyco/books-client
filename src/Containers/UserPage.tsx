@@ -37,7 +37,7 @@ const UserPage: React.FunctionComponent = () => {
                     imageUrl={book.imageURL}
                     publisher={book.publisher.publisherName}
                     price={book.price} />
-                <CustomButton text='buy' onClick={() => [setOpen(true), setPurchaseBook(book._id ? book._id : ''), setBookPrice(book.price)]} />
+                <CustomButton text='buy' onClick={() => [dispatch(purchase(book._id ? book._id : '', userDetails.token))]} />
             </div>
         );
     }
@@ -58,13 +58,13 @@ const UserPage: React.FunctionComponent = () => {
             <div className='Cards'>
                 {mapBooksList()}
             </div>
-            <CustomDialog
+            {/* <CustomDialog
                 open={open}
                 onClickCancel={() => setOpen(false)}
                 onSubmitForm={() => [setOpen(false), dispatch(purchase(purchaseBook, userDetails.token))]}
                 title={`Total Price: ${bookPrice}$`}
                 selectSubmitButtonName={'OK'}
-            />
+            /> */}
         </StyledDiv>
     );
 }

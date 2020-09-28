@@ -16,9 +16,9 @@ const initialState: IAppState = {
         fullName: '',
         imageURL: '',
         lastPurchase: {
-            bookId: '',
-            date: ''
-        }
+            date: '',
+            bookId: ''
+        },
     }
 }
 

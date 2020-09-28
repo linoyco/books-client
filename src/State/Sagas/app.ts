@@ -83,14 +83,11 @@ export function* watchSearchBy() {
     }
 };
 
-
 //PURCHASE
 function* purchaseFlow(bookId: string, token: string) {
     try {
-        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });
+        // yield put({ type: SET_ERROR_MESSAGE, errorMessage: '' });        
         const res = yield call(Api.purchaseBookRequest, bookId, token);
-        console.log(res.data);
-
         yield put({ type: SAVE_USER, userDetails: res.data });
     }
     catch (error) {
