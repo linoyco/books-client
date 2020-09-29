@@ -60,7 +60,10 @@ const AdminPage: React.FunctionComponent = () => {
                     publisher={book.publisher.publisherName}
                     starNumber={book.stars}
                     price={book.price} />
-                <CustomButton text='edit' onClick={() => [dispatch(bookToEdit(book)), setOpenEdit(true)]} />
+                <div className='Buttons'>
+                    <CustomButton text='edit' onClick={() => [dispatch(bookToEdit(book)), setOpenEdit(true)]} />
+                    <CustomButton text='edit' onClick={() => [dispatch(bookToEdit(book)), setOpenEdit(true)]} />
+                </div>
             </div>
         );
     }

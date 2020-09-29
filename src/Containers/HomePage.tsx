@@ -43,6 +43,13 @@ export const StyledDiv: any = styled.div`
         padding: 1%;
         margin:1%;
     }
+
+    .Buttons{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 17vh;
+    }
 `;
 
 const HomePage: React.FunctionComponent = () => {
