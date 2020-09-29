@@ -1,7 +1,7 @@
 import produce from 'immer';
 
 import { IBook, IUser } from '../../Api/ApiObject';
-import { appActionType, BOOK_TO_EDIT, DELETE_USER, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER } from '../Actions/App/types';
+import { appActionType, BOOK_TO_EDIT, DELETE_USER, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_UPDATE, SAVE_USER } from '../Actions/App/types';
 
 export interface IAppState {
     booksList: Array<IBook>;
@@ -67,7 +67,10 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
             case BOOK_TO_EDIT:
                 draft.bookToEdit = action.book;
                 break;
+            case SAVE_UPDATE:
                 
+
+                break;
         }
     });
 }

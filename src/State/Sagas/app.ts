@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { ADD_BOOK, DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS, SEND_UPDATE } from '../Actions/App/types';
+import { ADD_BOOK, DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_UPDATE, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS, SEND_UPDATE } from '../Actions/App/types';
 import * as Api from '../../Api';
 import { IBook } from '../../Api/ApiObject';
 
@@ -135,9 +135,7 @@ export function* watchAddBook() {
 function* addUpdateFlow(updatebook: IBook, bookId: string, token: string) {
     try {
         const res = yield call(Api.updateBookRequest, updatebook, bookId, token);
-        console.log(res.data);
-        
-        // yield put({ type: SAVE_BOOK, newBook: res.data });
+        yield put({ type: SAVE_UPDATE, updatebook: res.data });
     }
     catch (error) {
         console.log(error.message);

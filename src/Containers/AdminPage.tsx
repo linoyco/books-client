@@ -89,6 +89,7 @@ const AdminPage: React.FunctionComponent = () => {
         }
         await dispatch(sendUpdate(newBook, oldBook._id ? oldBook._id : '', userDetails.token));
         setOpenEdit(false);
+        mapBooksList();
     }
 
     return (
