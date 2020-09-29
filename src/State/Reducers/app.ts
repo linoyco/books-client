@@ -68,8 +68,11 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
                 draft.bookToEdit = action.book;
                 break;
             case SAVE_UPDATE:
-                
-
+                draft.booksList.map(book => {
+                    if (book._id === action.updatebook._id) {
+                        book = action.updatebook;
+                    }
+                });
                 break;
         }
     });

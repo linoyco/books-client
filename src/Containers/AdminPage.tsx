@@ -7,7 +7,7 @@ import { StyledDiv } from './HomePage';
 import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
 import CustomTextField from '../Components/CustomTextField';
-import { addBook, bookToEdit, lastPurchase, searchBook, sendUpdate } from '../State/Actions/App';
+import { addBook, bookToEdit, fetchBooks, lastPurchase, searchBook, sendUpdate } from '../State/Actions/App';
 import CustomButton from '../Components/CustomButton';
 import CustomDialog from '../Components/CustomDialog';
 
@@ -89,7 +89,7 @@ const AdminPage: React.FunctionComponent = () => {
         }
         await dispatch(sendUpdate(newBook, oldBook._id ? oldBook._id : '', userDetails.token));
         setOpenEdit(false);
-        mapBooksList();
+        dispatch(fetchBooks());
     }
 
     return (
