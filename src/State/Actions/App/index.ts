@@ -67,3 +67,11 @@ export function sendUpdate(updatebook: IBook, bookId: string, token: string): Ap
         token: token
     }
 }
+
+export function sentDelete(bookId: string, token: string): AppActions.ISendDeleteBook {
+    return {
+        type: AppActions.SEND_DELETE_BOOK,
+        bookId: bookId,
+        token: token
+    }
+}

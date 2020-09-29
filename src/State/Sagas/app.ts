@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { ADD_BOOK, DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_UPDATE, SAVE_USER, SEARCH_BY, SEND_LOGIN_DETAILS, SEND_UPDATE } from '../Actions/App/types';
+import { ADD_BOOK, DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_UPDATE, SAVE_USER, SEARCH_BY, SEND_DELETE_BOOK, SEND_LOGIN_DETAILS, SEND_UPDATE } from '../Actions/App/types';
 import * as Api from '../../Api';
 import { IBook } from '../../Api/ApiObject';
 
@@ -150,9 +150,11 @@ export function* watchUpdateBook() {
 };
 
 //DELETE BOOK
-function* addDeleteFlow(newBook: IBook, token: string) {
+function* deleteBookFlow(bookId: string, token: string) {
     try {
-        // const res = yield call(Api.addBookRequest, newBook, token);
+        const res = yield call(Api.deleteBookRequest, bookId, token);
+        console.log(res.data);
+        
         // yield put({ type: SAVE_BOOK, newBook: res.data });
     }
     catch (error) {
@@ -162,7 +164,7 @@ function* addDeleteFlow(newBook: IBook, token: string) {
 
 export function* watchDeleteBook() {
     while (true) {
-        // const { newBook, token } = yield take(ADD_BOOK);
-        // yield call(addDeleteFlow, newBook, token);
+        const { bookId, token } = yield take(SEND_DELETE_BOOK);
+        yield call(deleteBookFlow, bookId, token);
     }
 };

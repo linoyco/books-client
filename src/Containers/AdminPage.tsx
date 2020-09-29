@@ -7,7 +7,7 @@ import { StyledDiv } from './HomePage';
 import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
 import CustomTextField from '../Components/CustomTextField';
-import { addBook, bookToEdit, fetchBooks, lastPurchase, searchBook, sendUpdate } from '../State/Actions/App';
+import { addBook, bookToEdit, fetchBooks, lastPurchase, searchBook, sendUpdate, sentDelete } from '../State/Actions/App';
 import CustomButton from '../Components/CustomButton';
 import CustomDialog from '../Components/CustomDialog';
 
@@ -23,6 +23,7 @@ const AdminPage: React.FunctionComponent = () => {
 
     const [openEdit, setOpenEdit] = React.useState<boolean>(false);
     const [openAdd, setOpenAdd] = React.useState<boolean>(false);
+    const [clickedDelete, setClickedDelete] = React.useState<boolean>(false);
 
     const [searchBy, setSearchBy] = React.useState<string>('');
 
@@ -30,15 +31,22 @@ const AdminPage: React.FunctionComponent = () => {
     const userDetails: IUser = useSelector((state: any) => state.app.userDetails);
     const oldBook: IBook = useSelector((state: any) => state.app.bookToEdit);
 
-    // React.useEffect(() => {
-    //     if (userDetails.permission !== 'Admin') {
-    //         history.push('/');
-    //     }
-    // }, [userDetails.permission]);
+    React.useEffect(() => {
+        if (userDetails.permission !== 'Admin') {
+            history.push('/');
+        }
+    }, [userDetails.permission]);
 
     React.useEffect(() => {
         mapBooksList();
     }, [booksList]);
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setClickedDelete(false);
+            dispatch(fetchBooks());
+        }, 1000);
+    }, [clickedDelete]);
 
     React.useEffect(() => {
         setLocalBookName(oldBook.bookName);
@@ -62,10 +70,15 @@ const AdminPage: React.FunctionComponent = () => {
                     price={book.price} />
                 <div className='Buttons'>
                     <CustomButton text='edit' onClick={() => [dispatch(bookToEdit(book)), setOpenEdit(true)]} />
-                    <CustomButton text='edit' onClick={() => [dispatch(bookToEdit(book)), setOpenEdit(true)]} />
+                    <CustomButton text='delete' onClick={() => handleDeleteBook(book)} />
                 </div>
             </div>
         );
+    }
+
+    const handleDeleteBook = async (book: IBook) => {
+        dispatch(sentDelete(book._id ? book._id : '', userDetails.token));
+        setClickedDelete(true);
     }
 
     const onSubmitAdd = async () => {

@@ -15,6 +15,7 @@ export const SAVE_BOOK = 'SAVE_BOOK';
 export const BOOK_TO_EDIT = 'BOOK_TO_EDIT';
 export const SEND_UPDATE = 'SEND_UPDATE';
 export const SAVE_UPDATE = 'SAVE_UPDATE';
+export const SEND_DELETE_BOOK = 'SEND_DELETE_BOOK';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -92,6 +93,12 @@ export interface ISendUpdate {
 export interface ISaveUpdate {
     type: typeof SAVE_UPDATE;
     updatebook: IBook;
+}
+
+export interface ISendDeleteBook {
+    type: typeof SEND_DELETE_BOOK;
+    bookId: string;
+    token: string;
 }
 
 export type appActionType = IFetchBooks
