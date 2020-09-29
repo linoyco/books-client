@@ -40,13 +40,13 @@ const AdminPage: React.FunctionComponent = () => {
         mapBooksList();
     }, [booksList]);
 
-    // React.useEffect(() => {
-    //     console.log(bookToEdit);
-    //     if (bookToEdit.bookName !== '') {
-    //         setOpenEdit(true);
-    //     }
-    //     setOpenEdit(false);
-    // }, [bookToEdit]);
+    React.useEffect(() => {
+        setLocalBookName(oldBook.bookName);
+        setLocalAuthorName(oldBook.author.fullName);
+        setLocalImageUrl(oldBook.imageURL);
+        setLocalPrice(oldBook.price);
+        setLocalPublisherName(oldBook.publisher.publisherName);
+    }, [oldBook]);
 
     const mapBooksList = () => {
         if (booksList.length === 0) { return <div></div>; }
@@ -76,6 +76,22 @@ const AdminPage: React.FunctionComponent = () => {
         }
         await dispatch(addBook(newBook, userDetails.token));
         setOpenAdd(false);
+    }
+
+    const onSubmitEdit = async () => {
+        const newBook: IBook = {
+            bookName: localBookName,
+            author: { fullName: localAuthorName, age: oldBook.author.age },
+            imageURL: localImageUrl,
+            price: localPrice,
+            publisher: { publisherName: localPublisherName, year: oldBook.publisher.year },
+            stars: oldBook.stars
+        }
+        //upd
+        // await dispatch(addBook(newBook, userDetails.token));
+        console.log(newBook);
+
+        setOpenEdit(false);
     }
 
     return (
@@ -117,16 +133,16 @@ const AdminPage: React.FunctionComponent = () => {
             <CustomDialog
                 open={openEdit}
                 onClickCancel={() => setOpenEdit(false)}
-                onSubmitForm={() => setOpenEdit(false)}
+                onSubmitForm={() => onSubmitEdit()}
                 title='Edit'
                 selectSubmitButtonName={'Update'}
                 mood='edit'
 
-                bookName={oldBook.bookName}
-                authorName={oldBook.author.fullName}
-                publisherName={oldBook.publisher.publisherName}
-                price={oldBook.price}
-                imageURL={oldBook.imageURL}
+                bookName={localBookName}
+                authorName={localAuthorName}
+                publisherName={localPublisherName}
+                price={localPrice}
+                imageURL={localImageUrl}
 
                 onChangeBookName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalBookName(e.target.value)}
                 onChangeAuthorName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalAuthorName(e.target.value)}
