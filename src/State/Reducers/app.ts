@@ -67,6 +67,7 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
             case BOOK_TO_EDIT:
                 draft.bookToEdit = action.book;
                 break;
+                
         }
     });
 }

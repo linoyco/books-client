@@ -13,6 +13,8 @@ export const SAVE_LAST_PURCHASE = 'SAVE_LAST_PURCHASE';
 export const ADD_BOOK = 'ADD_BOOK';
 export const SAVE_BOOK = 'SAVE_BOOK';
 export const BOOK_TO_EDIT = 'BOOK_TO_EDIT';
+export const SEND_UPDATE = 'SEND_UPDATE';
+export const SAVE_UPDATE = 'SAVE_UPDATE';
 
 export interface IFetchBooks {
     type: typeof FETCH_BOOKS;
@@ -80,6 +82,18 @@ export interface IBookToEdit {
     book: IBook;
 }
 
+export interface ISendUpdate {
+    type: typeof SEND_UPDATE;
+    updatebook: IBook;
+    bookId: string;
+    token: string;
+}
+
+export interface ISaveUpdate {
+    type: typeof SAVE_UPDATE;
+    updatebook: IBook;
+}
+
 export type appActionType = IFetchBooks
     | ISaveBooks
     | ISendLoginDetails
@@ -92,4 +106,6 @@ export type appActionType = IFetchBooks
     | ISaveLastPurchase
     | IAddBook
     | ISaveBook
-    | IBookToEdit;
+    | IBookToEdit
+    | ISendUpdate
+    | ISaveUpdate;

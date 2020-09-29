@@ -48,8 +48,22 @@ export const addBookRequest = (newbook: IBook, token: string) => {
 }
 
 //ADMIN - update book
-export const updateBookRequest = (updatebook: IBook, bookID: string, token: string) => {
-    return Axios.patch(UPDATE_BOOK_URL, { updatebook, bookID }, {
+export const updateBookRequest = (updatebook: IBook, bookId: string, token: string) => {
+    const obj = {
+        bookName: updatebook.bookName,
+        author: {
+            fullName: updatebook.author.fullName,
+            age: updatebook.author.age
+        },
+        publisher: {
+            publisherName: updatebook.publisher.publisherName,
+            year: updatebook.publisher.year
+        },
+        price: updatebook.price,
+        imageURL: updatebook.imageURL,
+        bookId: bookId
+    }
+    return Axios.patch(UPDATE_BOOK_URL, obj, {
         headers: { 'Authorization': `Bearer ${token}` }
     });
 }
@@ -57,7 +71,7 @@ export const updateBookRequest = (updatebook: IBook, bookID: string, token: stri
 //ADMIN - delete book
 export const deleteBookRequest = (bookId: string, token: string) => {
     const obj = { bookId: bookId }
-    return Axios.patch(DELETE_BOOK_URL, bookId, {
+    return Axios.patch(DELETE_BOOK_URL, obj, {
         headers: { 'Authorization': `Bearer ${token}` }
     });
 }

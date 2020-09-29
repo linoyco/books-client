@@ -58,3 +58,12 @@ export function bookToEdit(book: IBook): AppActions.IBookToEdit {
         book: book,
     }
 }
+
+export function sendUpdate(updatebook: IBook, bookId: string, token: string): AppActions.ISendUpdate {
+    return {
+        type: AppActions.SEND_UPDATE,
+        updatebook: updatebook,
+        bookId: bookId,
+        token: token
+    }
+}
