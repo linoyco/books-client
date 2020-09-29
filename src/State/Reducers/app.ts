@@ -1,12 +1,13 @@
 import produce from 'immer';
 
 import { IBook, IUser } from '../../Api/ApiObject';
-import { appActionType, DELETE_USER, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER } from '../Actions/App/types';
+import { appActionType, BOOK_TO_EDIT, DELETE_USER, SAVE_BOOK, SAVE_BOOKS, SAVE_LAST_PURCHASE, SAVE_USER } from '../Actions/App/types';
 
 export interface IAppState {
     booksList: Array<IBook>;
     userDetails: IUser;
     lastPurchase: IBook;
+    bookToEdit: IBook;
 }
 
 const initialState: IAppState = {
@@ -25,6 +26,14 @@ const initialState: IAppState = {
         price: '',
         publisher: { publisherName: '', year: '' },
         stars: 0,
+    },
+    bookToEdit: {
+        author: { age: '', fullName: '' },
+        stars: 0,
+        publisher: { publisherName: '', year: '' },
+        price: '',
+        imageURL: '',
+        bookName: ''
     }
 }
 
@@ -54,6 +63,9 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
                 break;
             case SAVE_BOOK:
                 draft.booksList.push(action.newBook);
+                break;
+            case BOOK_TO_EDIT:
+                draft.bookToEdit = action.book;
                 break;
         }
     });

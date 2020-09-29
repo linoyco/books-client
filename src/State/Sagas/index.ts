@@ -11,7 +11,7 @@ export default function* rootSaga() {
 		watchPurchase(),
 		watchLastPurchase(),
 		watchAddBook(),
-		watchUpdateBook(),
-		watchDeleteBook()
+		// watchUpdateBook(),
+		// watchDeleteBook()
 	]);
 }

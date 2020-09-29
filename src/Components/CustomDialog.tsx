@@ -25,20 +25,6 @@ interface IProps {
 }
 
 const CustomDialog: React.FunctionComponent<IProps> = ({ onChangeImageURL, onChangePrice, onChangePublisherName, onChangeAuthorName, onChangeBookName, imageURL, price, publisherName, authorName, bookName, mood, open, title, onSubmitForm, selectSubmitButtonName, onClickCancel }) => {
-    // {
-    //     "bookName": "Linoyyyyyy",
-    //     "author": {
-    //         "fullName": "lala blala",
-    //         "age": "20"
-    //     },
-    //     "publisher": {
-    //         "publisherName": "sshimi",
-    //         "year": "2020"
-    //     },
-    //     "price": "65",
-    //     "imageURL": "www.bljjaba.com"
-    // }
-
     const checkMood = () => {
         if (mood === 'add') {
             return <div>
@@ -68,13 +54,34 @@ const CustomDialog: React.FunctionComponent<IProps> = ({ onChangeImageURL, onCha
                     onChange={onChangeImageURL}
                 />
             </div>
-
         } else if (mood === 'edit') {
-            return <CustomTextField
-                label=''
-                value={''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
-            />
+            return <div>
+                <CustomTextField
+                    label='Book name'
+                    value={bookName || ''}
+                    onChange={onChangeBookName}
+                />
+                <CustomTextField
+                    label='Author Name'
+                    value={authorName || ''}
+                    onChange={onChangeAuthorName}
+                />
+                <CustomTextField
+                    label='Publisher name'
+                    value={publisherName || ''}
+                    onChange={onChangePublisherName}
+                />
+                <CustomTextField
+                    label='Price'
+                    value={price || ''}
+                    onChange={onChangePrice}
+                />
+                <CustomTextField
+                    label='Image URL'
+                    value={imageURL || ''}
+                    onChange={onChangeImageURL}
+                />
+            </div>
         } else return;
     }
 

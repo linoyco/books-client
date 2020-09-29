@@ -7,7 +7,7 @@ import { StyledDiv } from './HomePage';
 import { IBook, IUser } from '../Api/ApiObject';
 import CustomCard from '../Components/CustomCard';
 import CustomTextField from '../Components/CustomTextField';
-import { addBook, searchBook } from '../State/Actions/App';
+import { addBook, bookToEdit, lastPurchase, searchBook } from '../State/Actions/App';
 import CustomButton from '../Components/CustomButton';
 import CustomDialog from '../Components/CustomDialog';
 
@@ -28,6 +28,7 @@ const AdminPage: React.FunctionComponent = () => {
 
     const booksList: Array<IBook> = useSelector((state: any) => state.app.booksList);
     const userDetails: IUser = useSelector((state: any) => state.app.userDetails);
+    const oldBook: IBook = useSelector((state: any) => state.app.bookToEdit);
 
     // React.useEffect(() => {
     //     if (userDetails.permission !== 'Admin') {
@@ -39,13 +40,13 @@ const AdminPage: React.FunctionComponent = () => {
         mapBooksList();
     }, [booksList]);
 
-    const resetLocal = () => {
-        setLocalBookName('');
-        setLocalAuthorName('');
-        setLocalPublisherName('');
-        setLocalPrice('');
-        setLocalImageUrl('');
-    }
+    // React.useEffect(() => {
+    //     console.log(bookToEdit);
+    //     if (bookToEdit.bookName !== '') {
+    //         setOpenEdit(true);
+    //     }
+    //     setOpenEdit(false);
+    // }, [bookToEdit]);
 
     const mapBooksList = () => {
         if (booksList.length === 0) { return <div></div>; }
@@ -59,7 +60,7 @@ const AdminPage: React.FunctionComponent = () => {
                     publisher={book.publisher.publisherName}
                     starNumber={book.stars}
                     price={book.price} />
-                <CustomButton text='edit' onClick={() => setOpenEdit(true)} />
+                <CustomButton text='edit' onClick={() => [dispatch(bookToEdit(book)), setOpenEdit(true)]} />
             </div>
         );
     }
@@ -87,7 +88,7 @@ const AdminPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
-                <CustomButton text='new book' onClick={() => [setOpenAdd(true), resetLocal()]} />
+                <CustomButton text='new book' onClick={() => setOpenAdd(true)} />
             </div>
             <div className='Cards'>
                 {mapBooksList()}
@@ -120,6 +121,18 @@ const AdminPage: React.FunctionComponent = () => {
                 title='Edit'
                 selectSubmitButtonName={'Update'}
                 mood='edit'
+
+                bookName={oldBook.bookName}
+                authorName={oldBook.author.fullName}
+                publisherName={oldBook.publisher.publisherName}
+                price={oldBook.price}
+                imageURL={oldBook.imageURL}
+
+                onChangeBookName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalBookName(e.target.value)}
+                onChangeAuthorName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalAuthorName(e.target.value)}
+                onChangePublisherName={(e: React.ChangeEvent<HTMLInputElement>) => setLocalPublisherName(e.target.value)}
+                onChangePrice={(e: React.ChangeEvent<HTMLInputElement>) => setLocalPrice(e.target.value)}
+                onChangeImageURL={(e: React.ChangeEvent<HTMLInputElement>) => setLocalImageUrl(e.target.value)}
             />
         </StyledDiv>
     );

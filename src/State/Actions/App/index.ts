@@ -51,3 +51,10 @@ export function addBook(newBook: IBook, token: string): AppActions.IAddBook {
         token: token
     }
 }
+
+export function bookToEdit(book: IBook): AppActions.IBookToEdit {
+    return {
+        type: AppActions.BOOK_TO_EDIT,
+        book: book,
+    }
+}
