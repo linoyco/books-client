@@ -108,6 +108,15 @@ const AdminPage: React.FunctionComponent = () => {
         dispatch(fetchBooks());
     }
 
+    const openAddDialog = () => {
+        setLocalBookName('');
+        setLocalAuthorName('');
+        setLocalImageUrl('');
+        setLocalPrice('');
+        setLocalPublisherName('');
+        setOpenAdd(true);
+    }
+
     return (
         <StyledDiv>
             <div className='Field'>
@@ -118,7 +127,7 @@ const AdminPage: React.FunctionComponent = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => [setSearchBy(e.target.value), dispatch(searchBook(e.target.value))]}
                     type='text'
                 />
-                <CustomButton text='new book' onClick={() => setOpenAdd(true)} />
+                <CustomButton text='new book' onClick={() => openAddDialog()} />
             </div>
             <div className='Cards'>
                 {mapBooksList()}

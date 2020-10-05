@@ -2,11 +2,11 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
+import { Avatar } from '@material-ui/core';
 
 import AppRoutes from './AppRoutes';
 import { fetchBooks } from '../State/Actions/App';
 import { IUser } from '../Api/ApiObject';
-import { Avatar } from '@material-ui/core';
 
 const GlobalStyle = createGlobalStyle`
   html{
