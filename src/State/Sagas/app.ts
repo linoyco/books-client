@@ -4,7 +4,6 @@ import { ADD_BOOK, DELETE_USER, FETCH_BOOKS, LAST_PURCHASE, LOGOUT, PURCHASE, SA
 import * as Api from '../../Api';
 import { IBook } from '../../Api/ApiObject';
 
-//GET BOOKS
 function* fetchBooksFlow() {
     try {
         const res = yield call(Api.getBooksRequest);
@@ -22,7 +21,6 @@ export function* watchFetchBooks() {
     }
 };
 
-//LOGIN
 function* LoginFlow(name: string, password: string) {
     try {
         const res = yield call(Api.loginRequest, name, password);
@@ -40,7 +38,6 @@ export function* watchLogin() {
     }
 };
 
-//LOGOUT
 function* LogoutFlow() {
     try {
         yield call(Api.logoutRequest);
@@ -58,7 +55,6 @@ export function* watchLogout() {
     }
 };
 
-//SEARCH
 function* searchByFlow(searchBy: string) {
     try {
         const res = yield call(Api.searchRequest, searchBy);
@@ -76,7 +72,6 @@ export function* watchSearchBy() {
     }
 };
 
-//PURCHASE
 function* purchaseFlow(bookId: string, token: string) {
     try {
         const res = yield call(Api.purchaseBookRequest, bookId, token);
@@ -94,7 +89,6 @@ export function* watchPurchase() {
     }
 };
 
-//LAST PURCHASE
 function* lastPurchaseFlow(bookId: string, token: string) {
     try {
         const res = yield call(Api.lastPurchaseRequest, bookId, token);
@@ -112,8 +106,6 @@ export function* watchLastPurchase() {
     }
 };
 
-
-//ADD BOOK
 function* addBookFlow(newBook: IBook, token: string) {
     try {
         const res = yield call(Api.addBookRequest, newBook, token);
@@ -131,7 +123,6 @@ export function* watchAddBook() {
     }
 };
 
-//UPDATE BOOK
 function* addUpdateFlow(updatebook: IBook, bookId: string, token: string) {
     try {
         const res = yield call(Api.updateBookRequest, updatebook, bookId, token);
@@ -149,13 +140,9 @@ export function* watchUpdateBook() {
     }
 };
 
-//DELETE BOOK
 function* deleteBookFlow(bookId: string, token: string) {
     try {
         const res = yield call(Api.deleteBookRequest, bookId, token);
-        console.log(res.data);
-        
-        // yield put({ type: SAVE_BOOK, newBook: res.data });
     }
     catch (error) {
         console.log(error.message);
