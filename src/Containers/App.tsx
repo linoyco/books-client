@@ -74,7 +74,7 @@ const App: React.FunctionComponent = () => {
     dispatch(fetchBooks());
   }, []);
 
-  const userIMG = userDetails.fullName ? <Avatar /> : null;
+  const userIMG = userDetails.fullName ? <Avatar src={`${userDetails.imageURL}`} /> : null;
 
   const admin = userDetails.permission === 'Admin' ? ' back, Admin' : null;
 
